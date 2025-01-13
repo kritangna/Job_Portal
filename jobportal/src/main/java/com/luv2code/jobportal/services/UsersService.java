@@ -98,4 +98,8 @@ public class UsersService {
         }
         return null;
     }
+
+    public Users findByEmail(String currentUserName) {
+        return usersRepository.findByEmail(currentUserName).orElseThrow(() -> new UsernameNotFoundException("Could not found " + "user"));
+    }
 }

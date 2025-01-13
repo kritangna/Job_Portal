@@ -8,7 +8,7 @@ public class RecruiterProfile {
 
 
     @Id
-    private int userAccountId;
+    private Integer userAccountId;
 
     @OneToOne
     @JoinColumn(name = "user_account_id")
@@ -25,7 +25,7 @@ public class RecruiterProfile {
     @Column(nullable = true,length = 64)
     private String profilePhoto;
 
-    public RecruiterProfile(int userAccountId, Users userId, String firstName, String lastName, String city, String country, String state, String company, String profilePhoto) {
+    public RecruiterProfile(Integer userAccountId, Users userId, String firstName, String lastName, String city, String country, String state, String company, String profilePhoto) {
         this.userAccountId = userAccountId;
         this.userId = userId;
         this.firstName = firstName;
@@ -44,11 +44,11 @@ public class RecruiterProfile {
         this.userId = users;
     }
 
-    public int getUserAccountId() {
+    public Integer getUserAccountId() {
         return userAccountId;
     }
 
-    public void setUserAccountId(int userAccountId) {
+    public void setUserAccountId(Integer userAccountId) {
         this.userAccountId = userAccountId;
     }
 

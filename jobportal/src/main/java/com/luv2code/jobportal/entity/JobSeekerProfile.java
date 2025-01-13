@@ -40,9 +40,9 @@ public class JobSeekerProfile {
 
     }
 
-    public JobSeekerProfile(Users userId, Integer userAccountId, String firstName, String lastName, String city, String state, String country, String workAuthorization, String employmentType, String resume, String profilePhoto, List<Skills> skills) {
-        this.userId = userId;
+    public JobSeekerProfile(Integer userAccountId, Users userId, String firstName, String lastName, String city, String state, String country, String workAuthorization, String employmentType, String resume, String profilePhoto, List<Skills> skills) {
         this.userAccountId = userAccountId;
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -156,7 +156,8 @@ public class JobSeekerProfile {
     {
         if(profilePhoto == null || userAccountId == null)
             return null;
-        return "/photos/candidate/" + userAccountId + "/" + profilePhoto;
+        System.out.println("Working Directory " + System.getProperty("user.dir"));
+        return "photos/candidate/" + userAccountId + "/" + profilePhoto;
     }
 
     @Override

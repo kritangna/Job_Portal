@@ -5,6 +5,7 @@ import com.luv2code.jobportal.entity.Users;
 import com.luv2code.jobportal.repository.UsersRepository;
 import com.luv2code.jobportal.services.RecruiterProfileService;
 import com.luv2code.jobportal.util.FileUploadUtil;
+import jakarta.validation.Valid;
 import org.springframework.context.annotation.AdviceModeImportSelector;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -53,13 +54,14 @@ public class RecruiterProfileController {
             if(!recruiterProfile.isEmpty())
             {
                 model.addAttribute("profile", recruiterProfile.get());
+                System.out.println("First call" + model.containsAttribute("profile"));
             }
         }
         return "recruiter-profile";
     }
 
     @PostMapping("/addNew")
-    public String addNew(RecruiterProfile recruiterProfile, @RequestParam("image") MultipartFile multipartFile, Model model) {
+    public String addNew(@Valid RecruiterProfile recruiterProfile, @RequestParam("image") MultipartFile multipartFile, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if(!(auth instanceof AnonymousAuthenticationToken))
@@ -70,6 +72,7 @@ public class RecruiterProfileController {
             recruiterProfile.setUserAccountId(users.getUserId());
         }
         model.addAttribute("profile", recruiterProfile);
+        System.out.println("Second call" + model.containsAttribute("profile"));
         String fileName ="";
         if(!multipartFile.getOriginalFilename().equals(""))
         {
